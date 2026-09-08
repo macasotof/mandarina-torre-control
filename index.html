@@ -3,39 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MANDARINA - Torre de Control Logístico</title>
+    <title>MANDARINA — Torre de Control Logístico</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- SLIDE 01: PORTADA -->
-    <section class="slide">
-        <div class="portada-container">
-            <!-- Imagen de la portada extraída de tu informe de Inacap -->
-            <img src="portada.png" alt="Portada Inacap Mandarina" class="imagen-portada">
-            <h1>MANDARINA: Torre de Control Logístico</h1>
-            <p><strong>Asignatura:</strong> Proyecto de Logística Integral[cite: 2]</p>
-            <p><strong>Alumnos:</strong> Macarena Soto, Maximiliano Nahuel[cite: 2]</p>
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="pulse-dot"></div>
+            <span>MANDARINA // TORRE DE CONTROL LOGÍSTICO</span>
         </div>
-    </section>
-
-    <!-- SLIDE DE EJEMPLO CON MATRIZ DESPLEGABLE -->
-    <section class="slide">
-        <h2>Diagnóstico y Análisis Estratégico</h2>
-        <p>A continuación se presenta el análisis FODA cuantificado del proyecto:</p>
-
-        <!-- Botón interactivo para desplegar la matriz -->
-        <button id="btn-matriz-foda" class="boton-desplegable" onclick="toggleMatrizFoda()">Ver Matriz FODA Completa</button>
-
-        <!-- Contenedor oculto que muestra la imagen de la matriz al hacer clic -->
-        <div id="matriz-foda-contenido" class="matriz-oculta">
-            <p><em>Detalle cuantitativo de factores internos y externos:</em></p>
-            <!-- Reemplaza 'matriz-foda.png' por el nombre del archivo de la imagen de tu matriz -->
-            <img src="matriz-foda.png" alt="Matriz FODA Cuantificada" class="imagen-matriz">
+        <div>
+            <span id="slide-counter" class="indicator">01 / 10</span>
         </div>
-    </section>
+    </header>
 
-    <!-- Enlazamos el archivo de JavaScript -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        
+        <!-- SLIDE 01: PORTADA -->
+        <div class="slide active">
+            <div class="portada-badge-container">
+                <span class="indicator">⚡ Proyecto Integral de Gestión Logística</span>
+            </div>
+            <h1 class="portada-title">MANDARINA</h1>
+            <p class="portada-subtitle">Torre de Control Logístico</p>
+            <div class="portada-box">
+                <p>Planificación inteligente para <strong style="color: #fff;">DORMEX</strong></p>
+                <div class="portada-autores">
+                    <span>Autores: Maximiliano Nahuel — Macarena Soto</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 02: EL PRODUCTO CRÍTICO -->
+        <div class="slide">
+            <div class="grid-2" style="align-items: center; text-align: left;">
+                <div>
+                    <div class="tag-top">01 // Análisis de Portafolio</div>
+                    <h2 style="margin-bottom: 1rem;">DORMEX</h2>
+                    <p style="margin-bottom: 1.5rem;">El activo estratégico principal que sostiene la operación comercial de la categoría agrícola.</p>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <span style="font-family: monospace; background: #1a1c23; border: 1px solid #334155; padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.85rem;">DORMEX 20</span>
+                        <span style="font-family: monospace; background: #1a1c23; border: 1px solid #334155; padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.85rem;">DORMEX 200</span>
+                    </div>
+                </div>
+                <div class="card-dark" style="text-align: center;">
+                    <div style="font-size: clamp(4rem, 9vw, 7rem); font-weight: 900; color: #f97316; letter-spacing: -0.05em; line-height: 1;">74%</div>
+                    <p style="font-family: monospace; font-size: 0.85rem; text-transform: uppercase; margin-top: 0.5rem; margin-bottom: 1.5rem;">Del valor vendido de su categoría</p>
+                    <div style="border-top: 1px solid #1e2028; padding-top: 1rem;">
+                        <span style="font-size: 0.85rem; color: #fdba74; font-weight: 600;">Alta criticidad · Ventana agrícola acotada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 03: EL DESAFÍO -->
+        <div class="slide">
+            <div class="tag-top">02 // Operativa Logística</div>
+            <h2 style="margin-bottom: 0.5rem;">El problema no es vender.</h2>
+            <p style="font-size: 1.35rem; color: #cbd5e1; margin-bottom: 2.5rem; font-weight: 300;">Es tener el producto correcto, en el lugar correcto, en el momento correcto.</p>
+            
+            <div class="grid-3" style="grid-template-columns: repeat(5, 1fr); gap: 0.75rem; width: 100%;">
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">DEMANDA</div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">STOCK</div>
+                <div style="background: #f97316; color: #fff; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700; box-shadow: 0 10px 25px rgba(249,115,22,0.3); position: relative;">
+                    BODEGA
+                    <div style="position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: #fb923c; white-space: nowrap; font-family: monospace;">⚠️ Quiebre potencial</div>
+                </div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">TRANSPORTE</div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">SUCURSAL</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 04: DIAGNÓSTICO DEL ENTORNO -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">03 // Entorno Operativo</div>
+            <h2 style="margin-bottom: 2rem; text-align: center;">¿Qué condiciona la operación?</h2>
+            <div class="grid-3">
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">💻</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">TECNOLOGÍA</h3>
+                        <p style="font-size: 0.95rem;">SAP + datos transaccionales</p>
+                    </div>
+                </div>
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🌦️</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">CLIMA</h3>
+                        <p style="font-size: 0.95rem;">Demanda sensible a condiciones agrícolas</p>
+                    </div>
+                </div>
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🛡️</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">REGULACIÓN</h3>
+                        <p style="font-size: 0.95rem;">SUSPEL + almacenamiento de sustancias peligrosas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 05: PRESIÓN COMPETITIVA -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">04 // Mercado y Competencia</div>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Porter</h2>
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 1</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">PROVEEDORES</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alto poder</p>
+                </div>
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 2</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">CLIENTES</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alto poder</p>
+                </div>
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 3</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">COMPETENCIA</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alta rivalidad</p>
+                </div>
+            </div>
+            <div style="width: 100%; background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.2); padding: 1rem; border-radius: 1rem; text-align: center;">
+                <p style="font-size: 0.95rem; color: #fdba74;">Si falla la disponibilidad, el cliente puede cambiar de proveedor.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 06: FODA -->
+        <div class="slide" style="text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; margin-bottom: 1.5rem;">
+                <div>
+                    <div class="tag-top" style="text-align: left;">05 // Evaluación Estratégica</div>
+                    <h2>El potencial existe. Falta ordenarlo.</h2>
+                </div>
+                <div class="card-dark" style="padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+                    <div style="text-align: center;"><span style="font-size: 1.5rem; font-weight: 900; color: #4ade80;">3,82</span><div style="font-size: 0.65rem; font-family: monospace; color: #94a3b8;">FAVORABLES</div></div>
+                    <span style="color: #475569; font-weight: 300;">vs</span>
+                    <div style="text-align: center;"><span style="font-size: 1.5rem; font-weight: 900; color: #f87171;">1,53</span><div style="font-size: 0.65rem; font-family: monospace; color: #94a3b8;">DESFAVORABLES</div></div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #fb923c; margin-bottom: 0.75rem; letter-spacing: 0.05em;">FORTALEZAS</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Cobertura</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• SAP</p>
+                    <p style="font-size: 0.9rem;">• Experiencia VMI</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #f87171; margin-bottom: 0.75rem; letter-spacing: 0.05em;">DEBILIDADES</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Datos manuales</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Reposición no estandarizada</p>
+                    <p style="font-size: 0.9rem;">• Fletes no consolidados</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.75rem; letter-spacing: 0.05em;">OPORTUNIDADES</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Automatización</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Integración de datos</p>
+                    <p style="font-size: 0.9rem;">• Planificación anticipada</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #fbbf24; margin-bottom: 0.75rem; letter-spacing: 0.05em;">AMENAZAS</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Clima</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Regulación</p>
+                    <p style="font-size: 0.9rem;">• Competencia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 07: LA OPORTUNIDAD -->
+        <div class="slide">
+            <div class="tag-top">06 // Ruta Estratégica</div>
+            <h2 style="margin-bottom: 2rem;">De la debilidad a la estrategia</h2>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1rem; width: 100%; margin-bottom: 2rem; flex-wrap: wrap;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">DEBILIDADES</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">TECNOLOGÍA</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">ESTANDARIZACIÓN</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #f97316; color: #fff; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700; box-shadow: 0 10px 25px rgba(249,115,22,0.3);">MANDARINA</div>
+            </div>
+            <div>
+                <span class="indicator" style="display: inline-block; margin-bottom: 0.5rem;">Estrategia DO</span>
+                <p style="font-size: 1.15rem; color: #fff;">Digitalizar después de ordenar el proceso.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 08: ¿QUÉ HACE MANDARINA? -->
+        <div class="slide">
+            <div class="tag-top">07 // Solución Central</div>
+            <h2 style="margin-bottom: 1.5rem;">Una torre de control para DORMEX</h2>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; width: 100%; max-width: 700px; margin-bottom: 1.5rem;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">SAP</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Forecast</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Stock</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Demanda</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Bodega</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Transporte</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; grid-column: span 2;">Reposición</div>
+            </div>
+            <div style="width: 100%; max-width: 450px; background: #f97316; color: #fff; padding: 1.5rem; border-radius: 1.5rem; box-shadow: 0 15px 35px rgba(249,115,22,0.3); margin-bottom: 1rem;">
+                <div style="font-family: monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.8; margin-bottom: 0.25rem;">Núcleo Central</div>
+                <h3 style="font-size: 1.75rem; font-weight: 800;">MANDARINA</h3>
+            </div>
+            <p style="font-family: monospace; font-size: 0.85rem; color: #fdba74;">Una decisión. Una fuente de información. Un proceso trazable.</p>
+        </div>
+
+        <!-- SLIDE 09: DATOS Y METODOLOGÍA -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">08 // Pipeline Analítico</div>
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">De datos dispersos a una decisión</h2>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; width: 100%; margin-bottom: 1.5rem;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">SAP</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Homologación</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Stock físico + proyectado</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Demanda</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Pallets</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Capacidad</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Costos</div>
+                <div style="background: #f97316; color: #fff; border: 1px solid #fb923c; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; font-weight: bold; text-align: center; grid-column: span 4;">DECISIÓN DE REPOSICIÓN</div>
+            </div>
+            <div>
+                <span style="font-family: monospace; font-size: 0.65rem; text-transform: uppercase; color: #64748b; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem;">Fuentes de Información</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">SAP</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Motor DORMEX</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Correos</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Bitácoras</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">SAG</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">ODEPA</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">MINAGRI</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">AlzChem</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: RESULTADO Y CIERRE -->
+        <div class="slide">
+            <div class="tag-top">09 // Resultados y Conclusión</div>
+            <h2 style="margin-bottom: 1.5rem;">El problema está identificado.</h2>
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">100%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Método</div>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">100%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Datos y Sistemas</div>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">94%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Almacenamiento</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; font-family: monospace; font-size: 0.75rem; color: #cbd5e1; margin-bottom: 1.5rem;">
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">REACTIVO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">ANTICIPADO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">ESTANDARIZADO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">TRAZABLE</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">MEDIBLE</span>
+            </div>
+            <div style="border-top: 1px solid #1e2028; width: 100%; padding-top: 1rem;">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">MANDARINA</h3>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem;">Transformar la gestión logística de DORMEX.</p>
+                <span style="font-family: monospace; font-size: 0.75rem; color: #f97316;">Muchas gracias.</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER / CONTROLES -->
+    <footer>
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-fill"></div>
+        </div>
+        <div class="controls">
+            <button onclick="prevSlide()" id="btn-prev" class="nav-btn">◀ Anterior</button>
+            <div id="dots-container" class="dots"></div>
+            <button onclick="nextSlide()" id="btn-next" class="nav-btn">Siguiente ▶</button>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
