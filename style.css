@@ -58,6 +58,13 @@ main {
     opacity: 1;
 }
 
+/* Estilos específicos para la Portada */
+.portada-badge-container { margin-bottom: 1rem; }
+.portada-title { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; letter-spacing: -0.03em; color: #fff; margin-bottom: 0.5rem; }
+.portada-subtitle { font-size: 1.5rem; color: #f97316; font-weight: 300; margin-bottom: 1.5rem; }
+.portada-box { border-top: 1px solid #1e2028; width: 100%; max-width: 450px; padding-top: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.portada-autores { font-family: monospace; font-size: 0.8rem; color: #94a3b8; background: #121316; border: 1px solid #1e2028; padding: 0.5rem 1rem; border-radius: 0.75rem; }
+
 .tag-top {
     font-family: monospace;
     font-size: 0.75rem;
@@ -131,7 +138,6 @@ button.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
     background: #f97316;
 }
 
-h1 { font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 800; letter-spacing: -0.03em; color: #fff; }
 h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: #fff; line-height: 1.2; }
 p { color: #94a3b8; font-size: 1.1rem; line-height: 1.6; }
 
