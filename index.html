@@ -1,561 +1,287 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MANDARINA — Torre de Control Logístico</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        mandarina: {
-                            50: '#fff7ed',
-                            100: '#ffedd5',
-                            500: '#f97316',
-                            600: '#ea580c',
-                            DEFAULT: '#FF6B00',
-                        },
-                        darkbase: {
-                            900: '#0a0a0c',
-                            800: '#121316',
-                            700: '#1a1c23',
-                            600: '#262933'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- React & ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <!-- Babel para JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/lucide-react/dist/umd/lucide-react.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0a0a0c;
-            color: #f8fafc;
-            overflow: hidden;
-        }
-        .glow-orange {
-            box-shadow: 0 0 50px -10px rgba(249, 115, 22, 0.15);
-        }
-        /* Transiciones suaves entre slides */
-        .slide-enter {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        .slide-active {
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-darkbase-900 text-slate-100 h-screen w-screen flex flex-col justify-between select-none">
+<body>
 
-    <div id="root" class="h-full w-full flex flex-col"></div>
+    <!-- HEADER -->
+    <header>
+        <div class="header-left">
+            <div class="pulse-dot"></div>
+            <span>MANDARINA // TORRE DE CONTROL LOGÍSTICO</span>
+        </div>
+        <div>
+            <span id="slide-counter" class="indicator">01 / 10</span>
+        </div>
+    </header>
 
-    <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-        const { 
-            ChevronLeft, ChevronRight, Package, TrendingUp, AlertTriangle, 
-            ShieldCheck, Cpu, CloudRain, Scale, Users, Layers, ArrowRight, 
-            Activity, Database, CheckCircle2, BarChart3, Globe, Zap, Target
-        } = LucideReact;
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        
+        <!-- SLIDE 01: PORTADA -->
+        <div class="slide active">
+            <span class="indicator" style="margin-bottom: 1.5rem;">⚡ Proyecto Académico de Gestión Logística</span>
+            <h1 style="margin-bottom: 1rem;">MANDARINA</h1>
+            <p style="font-size: 1.75rem; color: #f97316; font-weight: 300; margin-bottom: 2rem;">Torre de Control Logístico</p>
+            <div style="border-top: 1px solid #1e2028; width: 100%; max-width: 400px; padding-top: 1.5rem;">
+                <p>Planificación inteligente para <strong style="color: #fff;">DORMEX</strong></p>
+            </div>
+        </div>
 
-        const slides = [
-            { id: 1, title: "Portada" },
-            { id: 2, title: "Producto Crítico" },
-            { id: 3, title: "El Desafío" },
-            { id: 4, title: "Diagnóstico del Entorno" },
-            { id: 5, title: "Presión Competitiva" },
-            { id: 6, title: "FODA" },
-            { id: 7, title: "La Oportunidad" },
-            { id: 8, title: "¿Qué hace Mandarina?" },
-            { id: 9, title: "Datos y Metodología" },
-            { id: 10, title: "Resultado y Cierre" }
-        ];
-
-        function App() {
-            const [currentSlide, setCurrentSlide] = useState(0);
-
-            // Navegación por teclado
-            useEffect(() => {
-                const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowRight' || e.key === 'Space') {
-                        nextSlide();
-                    } else if (e.key === 'ArrowLeft') {
-                        prevSlide();
-                    }
-                };
-                window.addEventListener('keydown', handleKeyDown);
-                return () => window.removeEventListener('keydown', handleKeyDown);
-            }, [currentSlide]);
-
-            const nextSlide = () => {
-                if (currentSlide < slides.length - 1) {
-                    setCurrentSlide(curr => curr + 1);
-                }
-            };
-
-            const prevSlide = () => {
-                if (currentSlide > 0) {
-                    setCurrentSlide(curr => curr - 1);
-                }
-            };
-
-            return (
-                <div className="h-full w-full flex flex-col justify-between p-6 md:p-12 relative overflow-hidden">
-                    
-                    {/* Header Minimalista tipo Dashboard */}
-                    <header className="flex justify-between items-center z-10">
-                        <div className="flex items-center gap-3">
-                            <div className="w-3 h-3 rounded-full bg-orange-500 animate-pulse"></div>
-                            <span className="text-xs font-mono tracking-widest text-slate-400 uppercase">MANDARINA // TORRE DE CONTROL LOGÍSTICO</span>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <span className="text-xs font-mono text-orange-400 bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">
-                                {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-                            </span>
-                        </div>
-                    </header>
-
-                    {/* Contenedor Principal de Slides */}
-                    <main className="flex-1 flex items-center justify-center my-auto z-10 relative overflow-hidden">
-                        <div className="w-full max-w-6xl h-full flex items-center justify-center slide-active">
-                            {currentSlide === 0 && <Slide01 />}
-                            {currentSlide === 1 && <Slide02 />}
-                            {currentSlide === 2 && <Slide03 />}
-                            {currentSlide === 3 && <Slide04 />}
-                            {currentSlide === 4 && <Slide05 />}
-                            {currentSlide === 5 && <Slide06 />}
-                            {currentSlide === 6 && <Slide07 />}
-                            {currentSlide === 7 && <Slide08 />}
-                            {currentSlide === 8 && <Slide09 />}
-                            {currentSlide === 9 && <Slide10 />}
-                        </div>
-                    </main>
-
-                    {/* Footer / Controles de Navegación */}
-                    <footer className="flex flex-col md:flex-row justify-between items-center gap-4 z-10 pt-4 border-t border-slate-800/60">
-                        {/* Barra de Progreso */}
-                        <div className="w-full md:w-1/3 bg-darkbase-700 h-1.5 rounded-full overflow-hidden">
-                            <div 
-                                className="bg-orange-500 h-full transition-all duration-500 ease-out"
-                                style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
-                            ></div>
-                        </div>
-
-                        {/* Botones de Navegación */}
-                        <div className="flex items-center gap-3">
-                            <button 
-                                onClick={prevSlide}
-                                disabled={currentSlide === 0}
-                                className="p-2.5 rounded-xl bg-darkbase-700 hover:bg-darkbase-600 disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
-                                title="Anterior (←)"
-                            >
-                                <ChevronLeft size={20} />
-                            </button>
-
-                            <div className="flex gap-1.5 overflow-x-auto max-w-xs px-2">
-                                {slides.map((s, idx) => (
-                                    <button
-                                        key={s.id}
-                                        onClick={() => setCurrentSlide(idx)}
-                                        className={`w-2 h-2 rounded-full transition-all ${currentSlide === idx ? 'w-6 bg-orange-500' : 'bg-slate-700 hover:bg-slate-500'}`}
-                                    />
-                                ))}
-                            </div>
-
-                            <button 
-                                onClick={nextSlide}
-                                disabled={currentSlide === slides.length - 1}
-                                className="p-2.5 rounded-xl bg-darkbase-700 hover:bg-darkbase-600 disabled:opacity-30 disabled:cursor-not-allowed transition border border-slate-700 text-slate-200"
-                                title="Siguiente (→)"
-                            >
-                                <ChevronRight size={20} />
-                            </button>
-                        </div>
-                    </footer>
-                </div>
-            );
-        }
-
-        // SLIDE 01 — PORTADA
-        function Slide01() {
-            return (
-                <div className="flex flex-col items-center text-center space-y-8 max-w-4xl mx-auto">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-mono tracking-wider uppercase">
-                        <Activity size={14} /> Proyecto Académico de Gestión Logística
-                    </div>
-                    <div className="space-y-4">
-                        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight text-white">
-                            MANDARINA
-                        </h1>
-                        <p className="text-2xl md:text-3xl font-light text-orange-500 tracking-wide">
-                            Torre de Control Logístico
-                        </p>
-                    </div>
-                    <div className="pt-4 border-t border-slate-800 w-full max-w-md">
-                        <p className="text-slate-400 font-medium tracking-wide">
-                            Planificación inteligente para <span className="text-white font-semibold">DORMEX</span>
-                        </p>
+        <!-- SLIDE 02: EL PRODUCTO CRÍTICO -->
+        <div class="slide">
+            <div class="grid-2" style="align-items: center; text-align: left;">
+                <div>
+                    <div class="tag-top">01 // Análisis de Portafolio</div>
+                    <h2 style="margin-bottom: 1rem;">DORMEX</h2>
+                    <p style="margin-bottom: 1.5rem;">El activo estratégico principal que sostiene la operación comercial de la categoría agrícola.</p>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <span style="font-family: monospace; background: #1a1c23; border: 1px solid #334155; padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.85rem;">DORMEX 20</span>
+                        <span style="font-family: monospace; background: #1a1c23; border: 1px solid #334155; padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.85rem;">DORMEX 200</span>
                     </div>
                 </div>
-            );
-        }
-
-        // SLIDE 02 — EL PRODUCTO CRÍTICO
-        function Slide02() {
-            return (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-5xl">
-                    <div className="space-y-6">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">01 // Análisis de Portafolio</span>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">DORMEX</h2>
-                        <p className="text-slate-400 leading-relaxed">
-                            El activo estratégico principal que sostiene la operación comercial de la categoría agrícola.
-                        </p>
-                        <div className="flex gap-3 pt-2">
-                            <span className="px-4 py-2 bg-darkbase-700 border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 20</span>
-                            <span className="px-4 py-2 bg-darkbase-700 border border-slate-700 rounded-xl font-mono text-sm text-slate-300">DORMEX 200</span>
-                        </div>
-                    </div>
-                    <div className="bg-darkbase-800/80 border border-slate-800 p-8 rounded-3xl glow-orange flex flex-col justify-center items-center text-center space-y-4">
-                        <div className="text-7xl md:text-9xl font-black text-orange-500 tracking-tighter">
-                            74%
-                        </div>
-                        <p className="text-sm uppercase font-mono tracking-wider text-slate-400">
-                            Del valor vendido de su categoría
-                        </p>
-                        <div className="pt-4 border-t border-slate-700/50 w-full">
-                            <p className="text-xs text-orange-300 font-medium tracking-wide">
-                                Alta criticidad · Ventana agrícola acotada
-                            </p>
-                        </div>
+                <div class="card-dark" style="text-align: center;">
+                    <div style="font-size: clamp(4rem, 9vw, 7rem); font-weight: 900; color: #f97316; letter-spacing: -0.05em; line-height: 1;">74%</div>
+                    <p style="font-family: monospace; font-size: 0.85rem; text-transform: uppercase; margin-top: 0.5rem; margin-bottom: 1.5rem;">Del valor vendido de su categoría</p>
+                    <div style="border-top: 1px solid #1e2028; padding-top: 1rem;">
+                        <span style="font-size: 0.85rem; color: #fdba74; font-weight: 600;">Alta criticidad · Ventana agrícola acotada</span>
                     </div>
                 </div>
-            );
-        }
+            </div>
+        </div>
 
-        // SLIDE 03 — EL DESAFÍO
-        function Slide03() {
-            return (
-                <div className="flex flex-col items-center text-center space-y-10 w-full max-w-5xl">
-                    <div className="space-y-3">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">02 // Operativa Logística</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">El problema no es vender.</h2>
-                        <p className="text-xl md:text-2xl font-light text-slate-300 max-w-2xl mx-auto pt-2">
-                            Es tener el producto correcto, en el lugar correcto, en el momento correcto.
-                        </p>
-                    </div>
+        <!-- SLIDE 03: EL DESAFÍO -->
+        <div class="slide">
+            <div class="tag-top">02 // Operativa Logística</div>
+            <h2 style="margin-bottom: 0.5rem;">El problema no es vender.</h2>
+            <p style="font-size: 1.35rem; color: #cbd5e1; margin-bottom: 2.5rem; font-weight: 300;">Es tener el producto correcto, en el lugar correcto, en el momento correcto.</p>
+            
+            <div class="grid-3" style="grid-template-columns: repeat(5, 1fr); gap: 0.75rem; width: 100%;">
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">DEMANDA</div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">STOCK</div>
+                <div style="background: #f97316; color: #fff; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700; box-shadow: 0 10px 25px rgba(249,115,22,0.3); position: relative;">
+                    BODEGA
+                    <div style="position: absolute; bottom: -28px; left: 50%; transform: translateX(-50%); font-size: 0.65rem; color: #fb923c; white-space: nowrap; font-family: monospace;">⚠️ Quiebre potencial</div>
+                </div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">TRANSPORTE</div>
+                <div style="background: #1a1c23; border: 1px solid #334155; padding: 1.25rem 0.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.8rem; font-weight: 700;">SUCURSAL</div>
+            </div>
+        </div>
 
-                    <div className="w-full bg-darkbase-800/60 border border-slate-800 p-6 md:p-8 rounded-3xl grid grid-cols-2 md:grid-cols-5 gap-4 items-center relative">
-                        {['DEMANDA', 'STOCK', 'BODEGA', 'TRANSPORTE', 'SUCURSAL'].map((step, idx, arr) => (
-                            <div key={step} className="flex flex-col items-center relative">
-                                <div className={`w-full py-4 px-3 rounded-2xl text-center font-mono text-sm font-bold transition-all ${idx === 2 ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/20' : 'bg-darkbase-700 text-slate-300 border border-slate-700'}`}>
-                                    {step}
-                                </div>
-                                {idx === 2 && (
-                                    <span className="absolute -bottom-8 text-[10px] font-mono text-orange-400 whitespace-nowrap">
-                                        ⚠️ Quiebre potencial
-                                    </span>
-                                )}
-                            </div>
-                        ))}
+        <!-- SLIDE 04: DIAGNÓSTICO DEL ENTORNO -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">03 // Entorno Operativo</div>
+            <h2 style="margin-bottom: 2rem; text-align: center;">¿Qué condiciona la operación?</h2>
+            <div class="grid-3">
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">💻</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">TECNOLOGÍA</h3>
+                        <p style="font-size: 0.95rem;">SAP + datos transaccionales</p>
                     </div>
                 </div>
-            );
-        }
-
-        // SLIDE 04 — DIAGNÓSTICO DEL ENTORNO
-        function Slide04() {
-            const blocks = [
-                { title: "TECNOLOGÍA", subtitle: "SAP + datos transaccionales", icon: Cpu },
-                { title: "CLIMA", subtitle: "Demanda sensible a condiciones agrícolas", icon: CloudRain },
-                { title: "REGULACIÓN", subtitle: "SUSPEL + almacenamiento de sustancias peligrosas", icon: ShieldCheck }
-            ];
-
-            return (
-                <div className="flex flex-col space-y-8 w-full max-w-5xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">03 // Entorno Operativo</span>
-                        <h2 className="text-4xl font-bold text-white">¿Qué condiciona la operación?</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {blocks.map((b, i) => {
-                            const IconComponent = b.icon;
-                            return (
-                                <div key={i} className="bg-darkbase-800 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6 hover:border-orange-500/50 transition">
-                                    <div className="w-12 h-12 rounded-2xl bg-orange-500/10 text-orange-500 flex items-center justify-center">
-                                        <IconComponent size={24} />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h3 className="text-lg font-bold text-white tracking-wide">{b.title}</h3>
-                                        <p className="text-slate-400 text-sm leading-relaxed">{b.subtitle}</p>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🌦️</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">CLIMA</h3>
+                        <p style="font-size: 0.95rem;">Demanda sensible a condiciones agrícolas</p>
                     </div>
                 </div>
-            );
-        }
-
-        // SLIDE 05 — PRESIÓN COMPETITIVA
-        function Slide05() {
-            const forces = [
-                { name: "PROVEEDORES", level: "Alto poder" },
-                { name: "CLIENTES", level: "Alto poder" },
-                { name: "COMPETENCIA", level: "Alta rivalidad" }
-            ];
-
-            return (
-                <div className="flex flex-col space-y-8 w-full max-w-5xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">04 // Mercado y Competencia</span>
-                        <h2 className="text-4xl font-bold text-white">Porter</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {forces.map((f, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-8 rounded-3xl flex flex-col justify-between space-y-6">
-                                <span className="text-xs font-mono text-slate-500">Fuerza {i+1}</span>
-                                <div className="space-y-2">
-                                    <h3 className="text-xl font-bold text-white">{f.name}</h3>
-                                    <p className="text-orange-400 font-mono text-sm">{f.level}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="bg-orange-500/5 border border-orange-500/20 p-4 rounded-2xl text-center">
-                        <p className="text-sm text-orange-300 font-medium">
-                            Si falla la disponibilidad, el cliente puede cambiar de proveedor.
-                        </p>
+                <div class="card-dark" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="width: 45px; height: 45px; border-radius: 12px; background: rgba(249,115,22,0.1); color: #f97316; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">🛡️</div>
+                    <div>
+                        <h3 style="color: #fff; font-size: 1.15rem; margin-bottom: 0.5rem;">REGULACIÓN</h3>
+                        <p style="font-size: 0.95rem;">SUSPEL + almacenamiento de sustancias peligrosas</p>
                     </div>
                 </div>
-            );
-        }
+            </div>
+        </div>
 
-        // SLIDE 06 — FODA
-        function Slide06() {
-            return (
-                <div className="flex flex-col space-y-6 w-full max-w-5xl">
-                    <div className="flex justify-between items-end">
-                        <div className="space-y-2">
-                            <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">05 // Evaluación Estratégica</span>
-                            <h2 className="text-4xl font-bold text-white">El potencial existe. Falta ordenarlo.</h2>
-                        </div>
-                        {/* Comparación Destacada */}
-                        <div className="flex items-center gap-6 bg-darkbase-800 border border-slate-800 px-6 py-3 rounded-2xl">
-                            <div className="text-center">
-                                <span className="text-2xl font-black text-green-400">3,82</span>
-                                <p className="text-[10px] font-mono text-slate-400 uppercase">Favorables</p>
-                            </div>
-                            <span className="text-slate-600 font-light text-xl">vs</span>
-                            <div className="text-center">
-                                <span className="text-2xl font-black text-red-400">1,53</span>
-                                <p className="text-[10px] font-mono text-slate-400 uppercase">Desfavorables</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
-                            <h3 className="text-sm font-mono text-orange-400 uppercase tracking-wider">FORTALEZAS</h3>
-                            <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Cobertura</li>
-                                <li>• SAP</li>
-                                <li>• Experiencia VMI</li>
-                            </ul>
-                        </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
-                            <h3 className="text-sm font-mono text-red-400 uppercase tracking-wider">DEBILIDADES</h3>
-                            <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Datos manuales</li>
-                                <li>• Reposición no estandarizada</li>
-                                <li>• Fletes no consolidados</li>
-                            </ul>
-                        </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
-                            <h3 className="text-sm font-mono text-blue-400 uppercase tracking-wider">OPORTUNIDADES</h3>
-                            <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Automatización</li>
-                                <li>• Integración de datos</li>
-                                <li>• Planificación anticipada</li>
-                            </ul>
-                        </div>
-                        <div className="bg-darkbase-800/80 border border-slate-800 p-6 rounded-3xl space-y-3">
-                            <h3 className="text-sm font-mono text-amber-400 uppercase tracking-wider">AMENAZAS</h3>
-                            <ul className="text-sm text-slate-300 space-y-1 font-light">
-                                <li>• Clima</li>
-                                <li>• Regulación</li>
-                                <li>• Competencia</li>
-                            </ul>
-                        </div>
-                    </div>
+        <!-- SLIDE 05: PRESIÓN COMPETITIVA -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">04 // Mercado y Competencia</div>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Porter</h2>
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 1</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">PROVEEDORES</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alto poder</p>
                 </div>
-            );
-        }
-
-        // SLIDE 07 — LA OPORTUNIDAD
-        function Slide07() {
-            const steps = ["DEBILIDADES", "TECNOLOGÍA", "ESTANDARIZACIÓN", "MANDARINA"];
-            return (
-                <div className="flex flex-col items-center text-center space-y-10 w-full max-w-4xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">06 // Ruta Estratégica</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">De la debilidad a la estrategia</h2>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
-                        {steps.map((st, idx) => (
-                            <React.Fragment key={st}>
-                                <div className={`p-6 rounded-2xl w-full md:w-48 text-center font-mono text-sm font-bold border ${idx === 3 ? 'bg-orange-500 text-white border-orange-400 shadow-xl shadow-orange-500/20' : 'bg-darkbase-800 text-slate-300 border-slate-800'}`}>
-                                    {st}
-                                </div>
-                                {idx < steps.length - 1 && (
-                                    <div className="text-orange-500 font-bold rotate-90 md:rotate-0 my-2 md:my-0">↓</div>
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </div>
-
-                    <div className="space-y-2 pt-4">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 font-mono text-xs border border-orange-500/20">
-                            Estrategia DO
-                        </span>
-                        <p className="text-lg text-slate-300 font-light">
-                            Digitalizar después de ordenar el proceso.
-                        </p>
-                    </div>
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 2</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">CLIENTES</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alto poder</p>
                 </div>
-            );
-        }
-
-        // SLIDE 08 — ¿QUÉ HACE MANDARINA?
-        function Slide08() {
-            const nodes = ["SAP", "Forecast", "Stock", "Demanda", "Bodega", "Transporte", "Reposición"];
-            return (
-                <div className="flex flex-col items-center text-center space-y-8 w-full max-w-5xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">07 // Solución Central</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">Una torre de control para DORMEX</h2>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-3xl">
-                        {nodes.map((n, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-4 rounded-2xl text-slate-300 font-mono text-xs tracking-wider flex items-center justify-center">
-                                {n}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="w-full max-w-md bg-orange-500 text-white p-6 rounded-3xl shadow-xl shadow-orange-500/20 flex flex-col items-center justify-center space-y-2">
-                        <span className="text-xs font-mono tracking-widest uppercase opacity-80">Núcleo Central</span>
-                        <h3 className="text-3xl font-extrabold tracking-tight">MANDARINA</h3>
-                    </div>
-
-                    <p className="text-sm font-mono text-orange-300">
-                        Una decisión. Una fuente de información. Un proceso trazable.
-                    </p>
+                <div class="card-dark">
+                    <span style="font-family: monospace; font-size: 0.75rem; color: #64748b;">Fuerza 3</span>
+                    <h3 style="color: #fff; font-size: 1.25rem; margin: 0.5rem 0;">COMPETENCIA</h3>
+                    <p style="font-family: monospace; color: #fb923c; font-size: 0.9rem;">Alta rivalidad</p>
                 </div>
-            );
-        }
+            </div>
+            <div style="width: 100%; background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.2); padding: 1rem; border-radius: 1rem; text-align: center;">
+                <p style="font-size: 0.95rem; color: #fdba74;">Si falla la disponibilidad, el cliente puede cambiar de proveedor.</p>
+            </div>
+        </div>
 
-        // SLIDE 09 — DATOS Y METODOLOGÍA
-        function Slide09() {
-            const pipeline = [
-                "SAP", "Homologación", "Stock físico + proyectado", "Demanda", 
-                "Pallets", "Capacidad", "Costos", "DECISIÓN DE REPOSICIÓN"
-            ];
-            const tags = ["SAP", "Motor DORMEX", "Correos", "Bitácoras", "SAG", "ODEPA", "MINAGRI", "AlzChem"];
-
-            return (
-                <div className="flex flex-col space-y-8 w-full max-w-5xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">08 // Pipeline Analítico</span>
-                        <h2 className="text-4xl font-bold text-white">De datos dispersos a una decisión</h2>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                        {pipeline.map((p, i) => (
-                            <div key={i} className={`p-4 rounded-2xl font-mono text-xs flex items-center justify-center text-center border ${i === pipeline.length - 1 ? 'bg-orange-500 text-white border-orange-400 font-bold col-span-2 md:col-span-4' : 'bg-darkbase-800 text-slate-300 border-slate-800'}`}>
-                                {p}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="pt-2">
-                        <span className="text-[10px] font-mono uppercase text-slate-500 tracking-wider block mb-2">Fuentes de Información</span>
-                        <div className="flex flex-wrap gap-2">
-                            {tags.map((t, i) => (
-                                <span key={i} className="px-3 py-1 bg-darkbase-800 border border-slate-800 rounded-full font-mono text-[11px] text-slate-400">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
+        <!-- SLIDE 06: FODA -->
+        <div class="slide" style="text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%; margin-bottom: 1.5rem;">
+                <div>
+                    <div class="tag-top" style="text-align: left;">05 // Evaluación Estratégica</div>
+                    <h2>El potencial existe. Falta ordenarlo.</h2>
                 </div>
-            );
-        }
-
-        // SLIDE 10 — RESULTADO Y CIERRE
-        function Slide10() {
-            const indicators = [
-                { val: "100%", label: "Método" },
-                { val: "100%", label: "Datos y Sistemas" },
-                { val: "94%", label: "Almacenamiento" }
-            ];
-
-            const flow = ["REACTIVO", "ANTICIPADO", "ESTANDARIZADO", "TRAZABLE", "MEDIBLE"];
-
-            return (
-                <div className="flex flex-col items-center text-center space-y-8 w-full max-w-5xl">
-                    <div className="space-y-2">
-                        <span className="text-xs font-mono text-orange-400 uppercase tracking-widest">09 // Resultados y Conclusión</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-white">El problema está identificado.</h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-                        {indicators.map((ind, i) => (
-                            <div key={i} className="bg-darkbase-800 border border-slate-800 p-6 rounded-3xl flex flex-col items-center justify-center space-y-2 glow-orange">
-                                <span className="text-5xl font-black text-orange-500 tracking-tighter">{ind.val}</span>
-                                <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">{ind.label}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="flex flex-wrap justify-center items-center gap-2 text-xs font-mono text-slate-300 pt-2">
-                        {flow.map((f, i) => (
-                            <React.Fragment key={f}>
-                                <span className="px-3 py-1.5 bg-darkbase-800 border border-slate-800 rounded-xl">{f}</span>
-                                {i < flow.length - 1 && <span className="text-orange-500">→</span>}
-                            </React.Fragment>
-                        ))}
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-800 w-full space-y-2">
-                        <h3 className="text-2xl font-bold text-white tracking-tight">MANDARINA</h3>
-                        <p className="text-slate-400 font-light">Transformar la gestión logística de DORMEX.</p>
-                        <p className="text-xs font-mono text-orange-400 pt-2">Muchas gracias.</p>
-                    </div>
+                <div class="card-dark" style="padding: 0.75rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+                    <div style="text-align: center;"><span style="font-size: 1.5rem; font-weight: 900; color: #4ade80;">3,82</span><div style="font-size: 0.65rem; font-family: monospace; color: #94a3b8;">FAVORABLES</div></div>
+                    <span style="color: #475569; font-weight: 300;">vs</span>
+                    <div style="text-align: center;"><span style="font-size: 1.5rem; font-weight: 900; color: #f87171;">1,53</span><div style="font-size: 0.65rem; font-family: monospace; color: #94a3b8;">DESFAVORABLES</div></div>
                 </div>
-            );
-        }
+            </div>
+            <div class="grid-2">
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #fb923c; margin-bottom: 0.75rem; letter-spacing: 0.05em;">FORTALEZAS</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Cobertura</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• SAP</p>
+                    <p style="font-size: 0.9rem;">• Experiencia VMI</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #f87171; margin-bottom: 0.75rem; letter-spacing: 0.05em;">DEBILIDADES</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Datos manuales</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Reposición no estandarizada</p>
+                    <p style="font-size: 0.9rem;">• Fletes no consolidados</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #60a5fa; margin-bottom: 0.75rem; letter-spacing: 0.05em;">OPORTUNIDADES</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Automatización</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Integración de datos</p>
+                    <p style="font-size: 0.9rem;">• Planificación anticipada</p>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <h4 style="font-family: monospace; font-size: 0.85rem; color: #fbbf24; margin-bottom: 0.75rem; letter-spacing: 0.05em;">AMENAZAS</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Clima</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.3rem;">• Regulación</p>
+                    <p style="font-size: 0.9rem;">• Competencia</p>
+                </div>
+            </div>
+        </div>
 
-        ReactDOM.render(<App />, document.getElementById('root'));
-    </script>
+        <!-- SLIDE 07: LA OPORTUNIDAD -->
+        <div class="slide">
+            <div class="tag-top">06 // Ruta Estratégica</div>
+            <h2 style="margin-bottom: 2rem;">De la debilidad a la estrategia</h2>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 1rem; width: 100%; margin-bottom: 2rem; flex-wrap: wrap;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">DEBILIDADES</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">TECNOLOGÍA</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700;">ESTANDARIZACIÓN</div>
+                <span style="color: #f97316; font-weight: bold;">↓</span>
+                <div style="background: #f97316; color: #fff; padding: 1.25rem 1.5rem; border-radius: 1rem; font-family: monospace; font-size: 0.85rem; font-weight: 700; box-shadow: 0 10px 25px rgba(249,115,22,0.3);">MANDARINA</div>
+            </div>
+            <div>
+                <span class="indicator" style="display: inline-block; margin-bottom: 0.5rem;">Estrategia DO</span>
+                <p style="font-size: 1.15rem; color: #fff;">Digitalizar después de ordenar el proceso.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 08: ¿QUÉ HACE MANDARINA? -->
+        <div class="slide">
+            <div class="tag-top">07 // Solución Central</div>
+            <h2 style="margin-bottom: 1.5rem;">Una torre de control para DORMEX</h2>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; width: 100%; max-width: 700px; margin-bottom: 1.5rem;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">SAP</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Forecast</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Stock</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Demanda</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Bodega</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem;">Transporte</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.85rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; grid-column: span 2;">Reposición</div>
+            </div>
+            <div style="width: 100%; max-width: 450px; background: #f97316; color: #fff; padding: 1.5rem; border-radius: 1.5rem; box-shadow: 0 15px 35px rgba(249,115,22,0.3); margin-bottom: 1rem;">
+                <div style="font-family: monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.8; margin-bottom: 0.25rem;">Núcleo Central</div>
+                <h3 style="font-size: 1.75rem; font-weight: 800;">MANDARINA</h3>
+            </div>
+            <p style="font-family: monospace; font-size: 0.85rem; color: #fdba74;">Una decisión. Una fuente de información. Un proceso trazable.</p>
+        </div>
+
+        <!-- SLIDE 09: DATOS Y METODOLOGÍA -->
+        <div class="slide" style="text-align: left;">
+            <div class="tag-top" style="text-align: center;">08 // Pipeline Analítico</div>
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">De datos dispersos a una decisión</h2>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; width: 100%; margin-bottom: 1.5rem;">
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">SAP</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Homologación</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Stock físico + proyectado</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Demanda</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Pallets</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Capacidad</div>
+                <div style="background: #121316; border: 1px solid #1e2028; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; text-align: center;">Costos</div>
+                <div style="background: #f97316; color: #fff; border: 1px solid #fb923c; padding: 0.75rem; border-radius: 0.75rem; font-family: monospace; font-size: 0.75rem; font-weight: bold; text-align: center; grid-column: span 4;">DECISIÓN DE REPOSICIÓN</div>
+            </div>
+            <div>
+                <span style="font-family: monospace; font-size: 0.65rem; text-transform: uppercase; color: #64748b; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem;">Fuentes de Información</span>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">SAP</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Motor DORMEX</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Correos</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">Bitácoras</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">SAG</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">ODEPA</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">MINAGRI</span>
+                    <span style="background: #121316; border: 1px solid #1e2028; padding: 0.25rem 0.75rem; border-radius: 9999px; font-family: monospace; font-size: 0.7rem; color: #94a3b8;">AlzChem</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10: RESULTADO Y CIERRE -->
+        <div class="slide">
+            <div class="tag-top">09 // Resultados y Conclusión</div>
+            <h2 style="margin-bottom: 1.5rem;">El problema está identificado.</h2>
+            <div class="grid-3" style="margin-bottom: 1.5rem;">
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">100%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Método</div>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">100%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Datos y Sistemas</div>
+                </div>
+                <div class="card-dark" style="padding: 1.5rem;">
+                    <div style="font-size: 2.5rem; font-weight: 900; color: #f97316; letter-spacing: -0.05em;">94%</div>
+                    <div style="font-family: monospace; font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; margin-top: 0.25rem;">Almacenamiento</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.5rem; font-family: monospace; font-size: 0.75rem; color: #cbd5e1; margin-bottom: 1.5rem;">
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">REACTIVO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">ANTICIPADO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">ESTANDARIZADO</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">TRAZABLE</span> →
+                <span style="background: #121316; border: 1px solid #1e2028; padding: 0.4rem 0.75rem; border-radius: 0.5rem;">MEDIBLE</span>
+            </div>
+            <div style="border-top: 1px solid #1e2028; width: 100%; padding-top: 1rem;">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;">MANDARINA</h3>
+                <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 0.5rem;">Transformar la gestión logística de DORMEX.</p>
+                <span style="font-family: monospace; font-size: 0.75rem; color: #f97316;">Muchas gracias.</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER / CONTROLES -->
+    <footer>
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-fill"></div>
+        </div>
+        <div class="controls">
+            <button onclick="prevSlide()" id="btn-prev" class="nav-btn">◀ Anterior</button>
+            <div id="dots-container" class="dots"></div>
+            <button onclick="nextSlide()" id="btn-next" class="nav-btn">Siguiente ▶</button>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
