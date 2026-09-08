@@ -57,17 +57,3 @@ window.addEventListener('keydown', (e) => {
 });
 
 updateView();
-function toggleMatrizFoda() {
-    var matriz = document.getElementById("matriz-foda-contenido");
-    var boton = document.getElementById("btn-matriz-foda");
-    
-    // Si la matriz está oculta, la mostramos y cambiamos el texto del botón
-    if (matriz.style.display === "none" || matriz.style.display === "") {
-        matriz.style.display = "block";
-        boton.textContent = "Ocultar Matriz FODA";
-    } else {
-        // Si está visible, la ocultamos de nuevo
-        matriz.style.display = "none";
-        boton.textContent = "Ver Matriz FODA Completa";
-    }
-}
